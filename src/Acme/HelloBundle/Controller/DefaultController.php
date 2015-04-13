@@ -3,15 +3,14 @@
 namespace Acme\HelloBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\View\View;
+use Acme\HelloBundle\Model\User;
 
 class DefaultController extends Controller
 {
     public function helloAction($name)
     {
-        $data = [ 'name' => $name ];
+        $data = new User($name);
         $view = View::create();
 
         $view->setData($data);
