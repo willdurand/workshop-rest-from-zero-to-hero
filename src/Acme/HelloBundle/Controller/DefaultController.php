@@ -3,19 +3,30 @@
 namespace Acme\HelloBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Acme\HelloBundle\Model\User;
-Use FOS\RestBundle\View\View;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
-    public function helloAction($name)
+    public function helloAction(Request $request, $name)
     {
-        $data = new User($name);
-        $view = View::create();
+        $data   = [ 'name' => $name ];
+        $format = $request->getRequestFormat();
 
-        $view->setData($data);
-        $view->setTemplate('AcmeHelloBundle:Default:hello.html.twig');
+        if ('html' !== $format) {
+            $serializedData = $this
+                ->get('jms_serializer')
+                ->serialize($data, $format);
 
-        return $view;
+            return new Response($serializedData, 200, [
+                // WARNING: Don't do this at home!
+                'Content-Type' => 'application/' . $format,
+            ]);
+        }
+
+        return $this->render(
+            'AcmeHelloBundle:Default:hello.html.twig',
+            $data
+        );
     }
 }
