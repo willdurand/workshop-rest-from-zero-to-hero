@@ -16,6 +16,9 @@ class AppKernel extends Kernel
             // 1. FOSRestBundle (+ JMSSerializerBundle)
             new FOS\RestBundle\FOSRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            // Useful to directly return "View" objects
+            // cf. http://symfony.com/doc/master/bundles/FOSRestBundle/3-listener-support.html#view-response-listener
+            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
             new Acme\HelloBundle\AcmeHelloBundle()
         );
