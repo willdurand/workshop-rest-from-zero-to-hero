@@ -4,6 +4,7 @@ namespace Acme\HelloBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\View\View;
+use Acme\HelloBundle\Model\User;
 
 class DefaultController extends Controller
 {
