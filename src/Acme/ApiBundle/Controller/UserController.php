@@ -9,6 +9,7 @@ use FOS\RestBundle\Request\ParamFetcherInterface;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Acme\ApiBundle\Entity\UserCollection;
+use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends FOSRestController
 {
@@ -18,7 +19,7 @@ class UserController extends FOSRestController
      * @REST\QueryParam(name="page", requirements="\d+", nullable=true)
      * @REST\QueryParam(name="limit", requirements="\d+", default="10")
      */
-    public function allAction(ParamFetcherInterface $paramFetcher)
+    public function allAction(Request $request, ParamFetcherInterface $paramFetcher)
     {
         $page  = $paramFetcher->get('page');
         $page  = null == $page ? 1 : $page;
@@ -34,6 +35,10 @@ class UserController extends FOSRestController
         $pager = new Pagerfanta(new DoctrineORMAdapter($queryBuilder));
         $pager->setMaxPerPage($limit);
         $pager->setCurrentPage($page);
+
+        if ('html' === $request->getRequestFormat()) {
+            return [ 'pager' => $pager ];
+        }
 
         return new UserCollection($pager->getCurrentPageResults());
     }
