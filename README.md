@@ -17,11 +17,11 @@ Install the project's dependencies:
 
 Configure the project by renaming the `.env.dist` file to `.env`:
 
-    cp .env.dist .env
+    $ cp .env.dist .env
 
 Run the application:
 
-    bin/console server:start --router=`pwd`/web/index.php
+    $ bin/console server:start --router=`pwd`/web/index.php
 
 **Note:** defining the `--router` option is required here because default
 Symfony routers hardcode the front controller name (in this project it is
@@ -44,7 +44,7 @@ Serialization is brought to your by the
 
 A small [Behat](http://docs.behat.org) test suite is provided:
 
-    bin/behat features/basic-serialization.feature
+    $ bin/behat features/basic-serialization.feature
 
 The [FOSRestBundle](https://github.com/FriendsOfSymfony/FOSRestBundle)
 integrates with the JMSSerializerBundle, and provides the same feature throught
@@ -88,11 +88,11 @@ protected function getFixtures()
 
 Write Alice configuration in a `users.yml` file, and run the command above to load fixtures:
 
-bin/console doctrine:fixtures:load
+    $ bin/console doctrine:fixtures:load
 
 **->** Add a `UserController` to the `ApiBundle`
 
-**->** Write a `allAction()` method that returns all users throught a FOS view, using annotations (`@Get` and `@View`)
+**->** Write a method named `allAction()` that returns all users throught a FOS view, using annotations (`@Get` and `@View`)
 
 
 ## Pagination
