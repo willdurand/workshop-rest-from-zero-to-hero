@@ -23,7 +23,7 @@ Run the application:
 
     $ bin/console server:start --router=`pwd`/web/index.php
 
-**Note:** defining the `--router` option is required here because default
+**Note 1:** defining the `--router` option is required here because default
 Symfony routers hardcode the front controller name (in this project it is
 `index.php`, while Symfony uses `app[_dev].php`).
 
@@ -64,7 +64,7 @@ layer](http://symfony.com/doc/master/bundles/FOSRestBundle/2-the-view-layer.html
 
 ## The `ApiBundle`
 
-**->** Create a bundle called `ApiBundle`
+**->** Create a bundle called `ApiBundle`.
 
 **->** Create a `User` class with a few attributes (`id`, `firstName`, `lastName`,
 `birthDate`, etc.) and configure Doctrine mapping on it.
@@ -86,13 +86,15 @@ protected function getFixtures()
 }
 ```
 
-Write Alice configuration in a `users.yml` file, and run the command above to load fixtures:
+Write Alice configuration in a `users.yml` file, and run the command above to
+load fixtures:
 
     $ bin/console doctrine:fixtures:load
 
-**->** Add a `UserController` to the `ApiBundle`
+**->** Add a `UserController` to the `ApiBundle`.
 
-**->** Write a method named `allAction()` that returns all users throught a FOS view, using annotations (`@Get` and `@View`)
+**->** Write a method named `allAction()` that returns all users throught a FOS
+view, using annotations (`@Get` and `@View`).
 
 
 ## Pagination
@@ -101,7 +103,8 @@ Write Alice configuration in a `users.yml` file, and run the command above to lo
 powerful PHP pager. In order to use it, uncomment the line to enable the
 [WhiteOctoberPagerfantaBundle](https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle).
 
-**->** By combining FOSRestBundle `@QueryParam` and the Pagerfanta, modify the `allAction()` to provide a paginated collection.
+**->** By combining FOSRestBundle `@QueryParam` and the Pagerfanta, modify the
+`allAction()` to provide a paginated collection.
 
 **->** The JSON response should look like this:
 
