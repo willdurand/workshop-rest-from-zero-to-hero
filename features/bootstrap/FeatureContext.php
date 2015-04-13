@@ -34,4 +34,15 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
 
         assertContains($format, current($headers['content-type']));
     }
+
+    /**
+     * @Then it should contain a :name key whose value is :value
+     */
+    public function itShouldContainAKeyWhoseValueIs($name, $value)
+    {
+        $json = json_decode($this->getSession()->getPage()->getContent(), true);
+
+        assertArrayHasKey($name, $json);
+        assertEquals($value, $json[$name]);
+    }
 }
