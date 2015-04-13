@@ -1,27 +1,33 @@
 {
+    "name": "willdurand/workshop-rest-from-zero-to-hero",
+    "description": "",
+    "license": "MIT",
     "require": {
-        "symfony/symfony": "@stable",
-        "symfony/monolog-bundle": "@stable",
-        "vlucas/phpdotenv": "@stable",
+        "symfony/symfony": "~2.6",
+        "symfony/monolog-bundle": "~2.6",
+        "vlucas/phpdotenv": "~1.1",
         "friendsofsymfony/rest-bundle": "~1.5",
         "jms/serializer-bundle": "0.13.*",
         "doctrine/doctrine-bundle": "~1.4",
         "doctrine/orm": "~2.5",
-        "roave/security-advisories": "dev-master",
-        "behat/symfony2-extension": "~2.0",
-        "behat/mink-extension": "~2.0",
-        "behat/mink-browserkit-driver": "~1.2"
+        "roave/security-advisories": "dev-master"
     },
     "autoload": {
         "psr-0": { "Acme": "src/" }
     },
     "scripts": {
         "post-install-cmd": [
-            "app/console assets:install",
-            "app/console doctrine:database:create"
+            "bin/console assets:install",
+            "bin/console doctrine:database:create"
         ],
         "post-update-cmd": [
-            "app/console assets:install"
+            "bin/console assets:install"
         ]
+    },
+    "require-dev": {
+        "behat/symfony2-extension": "~2.0",
+        "behat/mink-extension": "~2.0",
+        "behat/mink-browserkit-driver": "~1.2",
+        "phpunit/phpunit": "~4.6"
     }
 }
