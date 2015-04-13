@@ -100,7 +100,9 @@ view, using annotations (`@Get` and `@View`).
 ## Pagination
 
 [Pagerfanta](https://github.com/whiteoctober/Pagerfanta) is a well-known and
-powerful PHP pager. In order to use it, uncomment the line to enable the
+powerful PHP pager.
+
+**->** In order to use it, uncomment the line to enable the
 [WhiteOctoberPagerfantaBundle](https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle)
 in the `AppKernel` class.
 
