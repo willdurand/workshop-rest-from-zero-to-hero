@@ -86,12 +86,47 @@ protected function getFixtures()
 }
 ```
 
-Write Alice configuration in a `users.yml` file, and run the command above to
-load fixtures:
+Write Alice configuration in a `users.yml` file, and run the command above to load fixtures:
 
-    bin/console doctrine:fixtures:load
+bin/console doctrine:fixtures:load
 
 **->** Add a `UserController` to the `ApiBundle`
 
-**->** Write a `allAction()` method that returns all users throught a FOS view,
-using annotations (`@Get` and `@View`)
+**->** Write a `allAction()` method that returns all users throught a FOS view, using annotations (`@Get` and `@View`)
+
+
+## Pagination
+
+[Pagerfanta](https://github.com/whiteoctober/Pagerfanta) is a well-known and
+powerful PHP pager. In order to use it, uncomment the line to enable the
+[WhiteOctoberPagerfantaBundle](https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle).
+
+**->** By combining FOSRestBundle `@QueryParam` and the Pagerfanta, modify the `allAction()` to provide a paginated collection.
+
+**->** The JSON response should look like this:
+
+```json
+{
+    "users": [
+        {
+            "birth_date": "2012-03-24T00:00:00+0100",
+            "first_name": "Adah",
+            "id": 1,
+            "last_name": "Reichel"
+        }
+    ]
+}
+```
+
+**->** The XML response should look like this:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+    <user id="1">
+        <first_name><![CDATA[Adah]]></first_name>
+        <last_name><![CDATA[Reichel]]></last_name>
+        <birth_date><![CDATA[2012-03-24T00:00:00+0100]]></birth_date>
+    </user>
+</users>
+```
