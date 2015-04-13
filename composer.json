@@ -2,7 +2,9 @@
     "require": {
         "symfony/symfony": "@stable",
         "symfony/monolog-bundle": "@stable",
-        "vlucas/phpdotenv": "@stable"
+        "vlucas/phpdotenv": "@stable",
+        "friendsofsymfony/rest-bundle": "~1.5",
+        "jms/serializer-bundle": "0.13.*"
     },
     "autoload": {
         "psr-0": { "Acme": "src/" }
