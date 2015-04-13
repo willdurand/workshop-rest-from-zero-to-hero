@@ -21,8 +21,11 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
             // 2. Fixtures
-            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-            new Hautelook\AliceBundle\HautelookAliceBundle(),
+            // new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            // new Hautelook\AliceBundle\HautelookAliceBundle(),
+
+            // 3. Pagination
+            // new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
 
             new Acme\HelloBundle\AcmeHelloBundle()
         );
