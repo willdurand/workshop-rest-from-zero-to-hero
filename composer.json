@@ -4,14 +4,17 @@
         "symfony/monolog-bundle": "@stable",
         "vlucas/phpdotenv": "@stable",
         "friendsofsymfony/rest-bundle": "~1.5",
-        "jms/serializer-bundle": "0.13.*"
+        "jms/serializer-bundle": "0.13.*",
+        "doctrine/doctrine-bundle": "~1.4",
+        "doctrine/orm": "~2.5"
     },
     "autoload": {
         "psr-0": { "Acme": "src/" }
     },
     "scripts": {
         "post-install-cmd": [
-            "app/console assets:install"
+            "app/console assets:install",
+            "app/console doctrine:database:create"
         ],
         "post-update-cmd": [
             "app/console assets:install"

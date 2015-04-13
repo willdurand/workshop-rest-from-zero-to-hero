@@ -19,3 +19,18 @@ monolog:
             type:  stream
             path:  "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
+
+doctrine:
+    orm:
+        auto_mapping: true
+        auto_generate_proxy_classes: %kernel.debug%
+
+    dbal:
+        driver:   %database_driver%
+        host:     %database_host%
+        port:     %database_port%
+        dbname:   %database_name%
+        user:     %database_user%
+        password: %database_password%
+        charset:  %database_charset%
+        path:     %database_path%
