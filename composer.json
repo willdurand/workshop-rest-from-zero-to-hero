@@ -11,7 +11,8 @@
         "doctrine/doctrine-bundle": "~1.4",
         "doctrine/orm": "~2.5",
         "roave/security-advisories": "dev-master",
-        "sensio/framework-extra-bundle": "~3.0"
+        "sensio/framework-extra-bundle": "~3.0",
+        "hautelook/alice-bundle": "0.2.*"
     },
     "autoload": {
         "psr-0": { "Acme": "src/" }

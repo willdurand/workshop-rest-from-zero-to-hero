@@ -20,6 +20,10 @@ class AppKernel extends Kernel
             // cf. http://symfony.com/doc/master/bundles/FOSRestBundle/3-listener-support.html#view-response-listener
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
+            // 2. Fixtures
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new Hautelook\AliceBundle\HautelookAliceBundle(),
+
             new Acme\HelloBundle\AcmeHelloBundle()
         );
 
