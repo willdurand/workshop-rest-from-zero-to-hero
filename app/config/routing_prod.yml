@@ -1,7 +1,8 @@
 hello_world:
-    pattern: /hello/{name}
+    pattern: /hello/{name}.{_format}
     defaults:
         _controller: "AcmeHelloBundle:Default:hello"
+        _format: "html"
 
 #NelmioApiDocBundle:
 #    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
