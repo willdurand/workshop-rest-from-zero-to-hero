@@ -41,6 +41,7 @@ doctrine:
 fos_rest:
     view:
         view_response_listener: force
+    param_fetcher_listener: true
 
 sensio_framework_extra:
     view:   { annotations: false }

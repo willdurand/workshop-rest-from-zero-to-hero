@@ -25,7 +25,7 @@ class AppKernel extends Kernel
             new Hautelook\AliceBundle\HautelookAliceBundle(),
 
             // 3. Pagination
-            // new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+            new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
 
             // 4. NelmioApiDocBundle (Documentation)
             // new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
@@ -33,9 +33,9 @@ class AppKernel extends Kernel
             // 5. BazingaHateoasBundle (Hypermedia)
             // new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
 
-            new Acme\HelloBundle\AcmeHelloBundle()
+            new Acme\HelloBundle\AcmeHelloBundle(),
             new Acme\ApiBundle\AcmeApiBundle(),
-            );
+        );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();

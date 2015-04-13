@@ -3,10 +3,12 @@
 namespace Acme\ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="user")
+ * @JMS\XmlRoot("user")
  */
 class User
 {
@@ -15,6 +17,7 @@ class User
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\XmlAttribute
      */
     private $id;
 
@@ -32,6 +35,17 @@ class User
      * @ORM\Column(type="datetime")
      */
     private $birthDate;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @JMS\Exclude
+     */
+    private $createdAt;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
     public function getId()
     {
@@ -71,5 +85,15 @@ class User
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
+    }
+
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
     }
 }
