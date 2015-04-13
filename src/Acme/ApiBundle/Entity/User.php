@@ -12,7 +12,6 @@ use JMS\Serializer\Annotation as JMS;
  */
 class User
 {
-
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
