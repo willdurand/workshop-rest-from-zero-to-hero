@@ -62,3 +62,36 @@ layer](http://symfony.com/doc/master/bundles/FOSRestBundle/2-the-view-layer.html
 </hello>
 ```
 
+## The `ApiBundle`
+
+-> Create a bundle called `ApiBundle`
+
+-> Create a `User` class with a few attributes (`id`, `firstName`, `lastName`,
+`birthDate`, etc.) and configure Doctrine mapping on it.
+
+-> Uncomment the `DoctrineFixturesBundle` and `HautelookAliceBundle` into the
+`app/AppKernel.php` file. You can now quickly write _fixtures_ using
+[Alice](https://github.com/nelmio/alice/blob/master/README.md).
+
+Create a `Acme\ApiBundle\DataFixtures\ORM\Loader`. This class should extend
+`Hautelook\AliceBundle\Alice\DataFixtureLoader`, and implement a `getFixtures()`
+method:
+
+```php
+protected function getFixtures()
+{
+    return [
+        __DIR__ . '/users.yml',
+    ];
+}
+```
+
+Write Alice configuration in a `users.yml` file, and run the command above to
+load fixtures:
+
+    bin/console doctrine:fixtures:load
+
+-> Add a `UserController` to the `ApiBundle`
+
+-> Write a `allAction()` method that returns all users throught a FOS view,
+using annotations (`@Get` and `@View`)
