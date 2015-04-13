@@ -73,7 +73,7 @@ layer](http://symfony.com/doc/master/bundles/FOSRestBundle/2-the-view-layer.html
 `app/AppKernel.php` file. You can now quickly write _fixtures_ using
 [Alice](https://github.com/nelmio/alice/blob/master/README.md).
 
-Create a `Acme\ApiBundle\DataFixtures\ORM\Loader`. This class should extend
+**->** Create a `Acme\ApiBundle\DataFixtures\ORM\Loader`. This class should extend
 `Hautelook\AliceBundle\Alice\DataFixtureLoader`, and implement a `getFixtures()`
 method:
 
@@ -86,7 +86,7 @@ protected function getFixtures()
 }
 ```
 
-Write Alice configuration in a `users.yml` file, and run the command above to
+**->** Write Alice configuration in a `users.yml` file, and run the command above to
 load fixtures:
 
     $ bin/console doctrine:fixtures:load
