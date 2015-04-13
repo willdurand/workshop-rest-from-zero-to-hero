@@ -7,7 +7,10 @@
         "jms/serializer-bundle": "0.13.*",
         "doctrine/doctrine-bundle": "~1.4",
         "doctrine/orm": "~2.5",
-        "roave/security-advisories": "dev-master"
+        "roave/security-advisories": "dev-master",
+        "behat/symfony2-extension": "~2.0",
+        "behat/mink-extension": "~2.0",
+        "behat/mink-browserkit-driver": "~1.2"
     },
     "autoload": {
         "psr-0": { "Acme": "src/" }

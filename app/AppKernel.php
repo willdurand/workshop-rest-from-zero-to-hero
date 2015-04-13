@@ -29,7 +29,11 @@ class AppKernel extends Kernel
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(__DIR__ . '/config/config.yml');
+        if ('test' === $this->getEnvironment()) {
+            $loader->load(__DIR__ . '/config/config_test.yml');
+        } else {
+            $loader->load(__DIR__ . '/config/config.yml');
+        }
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $loader->load(function ($container) {
