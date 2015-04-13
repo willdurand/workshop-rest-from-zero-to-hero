@@ -14,3 +14,9 @@ Feature: Basic Serialization
         When I reload the page
         Then it should be a "json" content
         And it should contain a "name" key whose value is "william"
+
+    Scenario: Retrieve XML content
+        Given I am on "/hello/william.xml"
+        When I reload the page
+        Then it should be a "xml" content
+        And it should contain a "entry" element whose value is "william"

@@ -45,4 +45,15 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         assertArrayHasKey($name, $json);
         assertEquals($value, $json[$name]);
     }
+
+    /**
+     * @Then it should contain a :element element whose value is :value
+     */
+    public function itShouldContainAElementWhoseValueIs($element, $value)
+    {
+        $xml = simplexml_load_string($this->getSession()->getPage()->getContent());
+
+        assertTrue(isset($xml->{$element}));
+        assertEquals($value, $xml->{$element});
+    }
 }
