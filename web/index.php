@@ -4,11 +4,19 @@ require_once __DIR__ . "/../vendor/autoload.php";
 require_once __DIR__ . "/../app/AppKernel.php";
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Debug\Debug;
 
-Dotenv::load(__DIR__ . '/../');
+if (!isset($_ENV['SYMFONY_ENV'])) {
+    Dotenv::makeMutable();
+    Dotenv::load(__DIR__ . '/../');
+}
 
-$request = Request::createFromGlobals();
-$kernel = new AppKernel($_SERVER['SYMFONY_ENV'], (bool)$_SERVER['SYMFONY_DEBUG']);
+if ((bool) $_ENV['SYMFONY_DEBUG']) {
+    Debug::enable();
+}
+
+$request  = Request::createFromGlobals();
+$kernel   = new AppKernel($_ENV['SYMFONY_ENV'], (bool) $_ENV['SYMFONY_DEBUG']);
 $response = $kernel->handle($request);
 $response->send();
 $kernel->terminate($request, $response);
