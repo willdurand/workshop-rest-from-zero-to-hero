@@ -13,4 +13,4 @@ Feature: Basic Serialization
         Given I am on "/hello/william.json"
         When I reload the page
         Then it should be a "json" content
-        And it should contain a "name" key whose value is "William"
+        And it should contain a "name" key whose value is "william"
