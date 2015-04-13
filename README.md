@@ -39,7 +39,7 @@ Serialization is brought to your by the
 [JMSSerializerBundle](http://jmsyst.com/bundles/JMSSerializerBundle), for free
 ;-)
 
--> You can start by modifying the `DefaultController` class to use the
+**->** You can start by modifying the `DefaultController` class to use the
 `jms_serializer` service and return either some XML, HTML, or JSON.
 
 A small [Behat](http://docs.behat.org) test suite is provided:
@@ -51,10 +51,10 @@ integrates with the JMSSerializerBundle, and provides the same feature throught
 the concept of
 "[views](http://symfony.com/doc/master/bundles/FOSRestBundle/2-the-view-layer.html)".
 
--> Configure the FOSRestBundle to leverage [the View
+**->** Configure the FOSRestBundle to leverage [the View
 layer](http://symfony.com/doc/master/bundles/FOSRestBundle/2-the-view-layer.html).
 
--> Configure the XML output to get the following document:
+**->** Configure the XML output to get the following document:
 
 ```xml
 <hello>
@@ -64,12 +64,12 @@ layer](http://symfony.com/doc/master/bundles/FOSRestBundle/2-the-view-layer.html
 
 ## The `ApiBundle`
 
--> Create a bundle called `ApiBundle`
+**->** Create a bundle called `ApiBundle`
 
--> Create a `User` class with a few attributes (`id`, `firstName`, `lastName`,
+**->** Create a `User` class with a few attributes (`id`, `firstName`, `lastName`,
 `birthDate`, etc.) and configure Doctrine mapping on it.
 
--> Uncomment the `DoctrineFixturesBundle` and `HautelookAliceBundle` into the
+**->** Uncomment the `DoctrineFixturesBundle` and `HautelookAliceBundle` into the
 `app/AppKernel.php` file. You can now quickly write _fixtures_ using
 [Alice](https://github.com/nelmio/alice/blob/master/README.md).
 
@@ -91,7 +91,7 @@ load fixtures:
 
     bin/console doctrine:fixtures:load
 
--> Add a `UserController` to the `ApiBundle`
+**->** Add a `UserController` to the `ApiBundle`
 
--> Write a `allAction()` method that returns all users throught a FOS view,
+**->** Write a `allAction()` method that returns all users throught a FOS view,
 using annotations (`@Get` and `@View`)
