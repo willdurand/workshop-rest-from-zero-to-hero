@@ -6,7 +6,8 @@
         "friendsofsymfony/rest-bundle": "~1.5",
         "jms/serializer-bundle": "0.13.*",
         "doctrine/doctrine-bundle": "~1.4",
-        "doctrine/orm": "~2.5"
+        "doctrine/orm": "~2.5",
+        "roave/security-advisories": "dev-master"
     },
     "autoload": {
         "psr-0": { "Acme": "src/" }
