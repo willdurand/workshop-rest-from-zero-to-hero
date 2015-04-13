@@ -5,12 +5,13 @@ namespace Acme\HelloBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Acme\HelloBundle\Model\User;
 
 class DefaultController extends Controller
 {
     public function helloAction(Request $request, $name)
     {
-        $data   = [ 'name' => $name ];
+        $data   = new User($name);
         $format = $request->getRequestFormat();
 
         if ('html' !== $format) {
