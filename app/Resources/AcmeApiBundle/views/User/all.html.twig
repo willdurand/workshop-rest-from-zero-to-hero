@@ -13,7 +13,7 @@
                     </tr>
                 <thead>
                 <tbody>
-                {% for user in pager %}
+                {% for user in pager.users %}
                     <tr class="user">
                         <td><a href="{{ path('acme_api_user_get', { 'id': user.id }) }}">{{ user.id }}</a></td>
                         <td>{{ user.firstName }}</td>
