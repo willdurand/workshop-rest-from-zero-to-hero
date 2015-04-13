@@ -101,7 +101,8 @@ view, using annotations (`@Get` and `@View`).
 
 [Pagerfanta](https://github.com/whiteoctober/Pagerfanta) is a well-known and
 powerful PHP pager. In order to use it, uncomment the line to enable the
-[WhiteOctoberPagerfantaBundle](https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle).
+[WhiteOctoberPagerfantaBundle](https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle)
+in the `AppKernel` class.
 
 **->** By combining FOSRestBundle `@QueryParam` and the Pagerfanta, modify the
 `allAction()` to provide a paginated collection.
