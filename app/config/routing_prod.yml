@@ -7,3 +7,8 @@ hello_world:
 #NelmioApiDocBundle:
 #    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
 #    prefix:   /api-doc
+
+acme_api:
+    resource: "@AcmeApiBundle/Controller"
+    type: annotation
+    prefix: /api

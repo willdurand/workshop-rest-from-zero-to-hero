@@ -21,8 +21,8 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
             // 2. Fixtures
-            // new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-            // new Hautelook\AliceBundle\HautelookAliceBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new Hautelook\AliceBundle\HautelookAliceBundle(),
 
             // 3. Pagination
             // new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
@@ -34,7 +34,8 @@ class AppKernel extends Kernel
             // new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
 
             new Acme\HelloBundle\AcmeHelloBundle()
-        );
+            new Acme\ApiBundle\AcmeApiBundle(),
+            );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
