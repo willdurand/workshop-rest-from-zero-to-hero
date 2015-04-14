@@ -39,11 +39,7 @@ class AppKernel extends Kernel
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        if ('test' === $this->getEnvironment()) {
-            $loader->load(__DIR__ . '/config/config_test.yml');
-        } else {
-            $loader->load(__DIR__ . '/config/config.yml');
-        }
+        $loader->load(__DIR__ . '/config/config.yml');
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $loader->load(function ($container) {
@@ -52,5 +48,10 @@ class AppKernel extends Kernel
                 ));
             });
         }
+
+        $app = $this;
+        $loader->load(function ($container) use ($app) {
+            $container->setParameter('enable_test', 'test' === $app->getEnvironment());
+        });
     }
 }

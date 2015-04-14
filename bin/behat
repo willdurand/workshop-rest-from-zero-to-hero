@@ -27,6 +27,8 @@ if ((!$loader = includeIfExists(__DIR__.'/../vendor/autoload.php')) && (!$loader
     exit(1);
 }
 
+Doctrine\Common\Annotations\AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
+
 Dotenv::load(__DIR__ . '/../');
 
 $factory = new \Behat\Behat\ApplicationFactory();

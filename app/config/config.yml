@@ -1,6 +1,7 @@
 # app/config/config.yml
 framework:
     secret: %secret%
+    test:   %enable_test%
     router:
         resource: "%kernel.root_dir%/config/routing_%kernel.environment%.yml"
         strict_requirements: %kernel.debug%
