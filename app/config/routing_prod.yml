@@ -2,3 +2,7 @@ hello_world:
     pattern: /hello/{name}
     defaults:
         _controller: "AcmeHelloBundle:Default:hello"
+
+#NelmioApiDocBundle:
+#    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+#    prefix:   /api-doc

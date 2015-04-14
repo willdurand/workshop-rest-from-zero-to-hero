@@ -32,6 +32,7 @@
         "behat/mink-browserkit-driver": "~1.2",
         "phpunit/phpunit": "~4.6",
         "hautelook/alice-bundle": "0.2.*",
-        "guzzlehttp/guzzle": "~5.2"
+        "guzzlehttp/guzzle": "~5.2",
+        "nelmio/api-doc-bundle": "~2.8"
     }
 }
