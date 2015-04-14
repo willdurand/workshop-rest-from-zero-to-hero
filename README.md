@@ -62,7 +62,7 @@ layer](http://symfony.com/doc/master/bundles/FOSRestBundle/2-the-view-layer.html
 </hello>
 ```
 
-## The `ApiBundle`
+## The `ApiBundle` (a.k.a. the Read part)
 
 **->** Create a bundle called `ApiBundle`.
 
@@ -137,6 +137,8 @@ in the `AppKernel` class.
 </users>
 ```
 
+**->** Create a `getAction()` that returns a given user.
+
 
 ## Tests
 
@@ -145,8 +147,65 @@ method. Behat runs the application with the `test` environment. Be sure to
 create a database and load fixtures in this environment.
 
 
-## Creating New Users
+## Create
 
-**->** Write a new route that is bound to a `postAction()` method.
+**->** Use the [Form](http://symfony.com/doc/current/book/forms.html) component
+to add a new user. This action must be named `postAction()`.
 
-**->** Write a scenario to cover this new feature!
+You will have to configure the
+[Validation](http://symfony.com/doc/current/book/validation.html) layer.
+
+In a better world, you would not use
+[Behat/Symfony2Extension](https://github.com/Behat/Symfony2Extension) but rather
+the [Behat/WebApiExtension](https://github.com/Behat/WebApiExtension). Because
+we are not in the real world, let's continue with the former extension. You
+can find two _scenarios_ below:
+
+```
+    Scenario: Add a new user
+        Given I am on "/api/users"
+        When I send:
+        """
+        {
+            "user": {
+                "firstName": "John",
+                "lastName": "Doe",
+                "birthDate": "1988-01-01"
+            }
+        }
+        """
+        Then the status code should be 201
+
+    Scenario: Add a new user with invalid data
+        Given I am on "/api/users"
+        When I send:
+        """
+        {
+            "user": {
+            }
+        }
+        """
+        Then the status code should be 400
+        And it should contain the following JSON content:
+        """
+        {"code":400,"message":"Validation Failed","errors":{"children":{"firstName":{"errors":["This value should not be blank."]},"lastName":{"errors":["This value should not be blank."]},"birthDate":[]}}}
+        """
+```
+
+
+## Update
+
+**->** Refactor your code to allow modifying existing entities.
+
+**->** Write a scenario to cover this new feature.
+
+
+## Content Negotiation
+
+The FOSRestBundle provides a [Format
+Listener](http://symfony.com/doc/master/bundles/FOSRestBundle/3-listener-support.html#format-listener)
+that does content negotitation (black) magic for you, leveraging the
+[Negotiation](https://github.com/willdurand/Negotiation) library.
+
+**->** Enable the format listener, and play with `curl` or
+[HTTPie](https://github.com/jkbr/httpie).

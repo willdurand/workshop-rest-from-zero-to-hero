@@ -1,4 +1,10 @@
 default:
+    suites:
+        default:
+            contexts:
+                - FeatureContext:
+                    - http://localhost:8000
+
     extensions:
         Behat\Symfony2Extension: ~
         Behat\MinkExtension:

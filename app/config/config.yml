@@ -9,6 +9,8 @@ framework:
         engines: ['twig']
     profiler:
         enabled: %kernel.debug%
+    validation: { enable_annotations: true }
+    form: ~
 
 monolog:
     handlers:

@@ -6,6 +6,7 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use Behat\MinkExtension\Context\MinkContext;
+use GuzzleHttp\Client;
 
 require_once __DIR__ . '/../../vendor/phpunit/phpunit/src/Framework/Assert/Functions.php';
 
@@ -14,6 +15,10 @@ require_once __DIR__ . '/../../vendor/phpunit/phpunit/src/Framework/Assert/Funct
  */
 class FeatureContext extends MinkContext implements Context, SnippetAcceptingContext
 {
+    private $client;
+
+    private $response;
+
     /**
      * Initializes context.
      *
@@ -21,8 +26,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      * You can also pass arbitrary arguments to the
      * context constructor through behat.yml.
      */
-    public function __construct()
+    public function __construct($baseUrl)
     {
+        $this->client = new Client([ 'base_url' => $baseUrl ]);
     }
 
     /**
@@ -55,5 +61,52 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
 
         assertTrue(isset($xml->{$element}));
         assertEquals($value, $xml->{$element});
+    }
+
+    /**
+     * @Then the status code should be :statusCode
+     */
+    public function theStatusCodeShouldBe($statusCode)
+    {
+        assertEquals($statusCode, $this->response->getStatusCode());
+    }
+
+    /**
+     * @Then it should contain the following JSON content:
+     */
+    public function itShouldContainTheFollowingJsonContent(PyStringNode $string)
+    {
+        assertEquals($string, (string) $this->response->getBody());
+    }
+
+    /**
+     * @When I send the following JSON document:
+     */
+    public function iSendTheFollowingJsonDocument(PyStringNode $string)
+    {
+        $this->request($string, [ 'Content-Type' => 'application/json' ]);
+    }
+
+    /**
+     * @When I send the following XML document:
+     */
+    public function iSendTheFollowingXmlDocument(PyStringNode $string)
+    {
+        $this->request($string, [ 'Content-Type' => 'application/xml' ]);
+    }
+
+    private function request($string, array $headers)
+    {
+        try {
+            $this->response = $this->client->post(
+                '/api/users',
+                [
+                    'headers' => $headers,
+                    'body'    => $string,
+                ]
+            );
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            $this->response = $e->getResponse();
+        }
     }
 }
