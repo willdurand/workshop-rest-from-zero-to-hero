@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <table class="table">
+            <table class="table users">
                 <thead>
                     <tr>
                         <td>#</td>
@@ -14,7 +14,7 @@
                 <thead>
                 <tbody>
                 {% for user in data.users %}
-                    <tr>
+                    <tr class="user">
                         <td>{{ user.id }}</td>
                         <td>{{ user.firstName }}</td>
                         <td>{{ user.lastName }}</td>
