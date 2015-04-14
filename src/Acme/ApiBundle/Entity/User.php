@@ -4,6 +4,7 @@ namespace Acme\ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -22,16 +23,19 @@ class User
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank()
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank()
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\Date()
      */
     private $birthDate;
 
@@ -71,7 +75,7 @@ class User
         return $this->birthDate;
     }
 
-    public function setBirthDate(\DateTime $birthDate)
+    public function setBirthDate(\DateTime $birthDate = null)
     {
         $this->birthDate = $birthDate;
     }
