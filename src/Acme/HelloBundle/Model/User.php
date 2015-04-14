@@ -4,7 +4,9 @@ namespace Acme\HelloBundle\Model;
 
 use JMS\Serializer\Annotation\XmlRoot;
 
-/** @XmlRoot("user") */
+/**
+ * @XmlRoot("user")
+ */
 class User
 {
     private $name;
