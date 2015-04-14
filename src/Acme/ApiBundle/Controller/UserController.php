@@ -16,7 +16,7 @@ use Acme\ApiBundle\Entity\User;
 class UserController extends FOSRestController
 {
     /**
-     * @REST\Get("/users.{_format}", defaults={"_format"="html"})
+     * @REST\Get("/users.{_format}", defaults={"_format"="~"})
      * @REST\View()
      * @REST\QueryParam(name="page", requirements="\d+", nullable=true)
      * @REST\QueryParam(name="limit", requirements="\d+", default="10")
@@ -46,7 +46,7 @@ class UserController extends FOSRestController
     }
 
     /**
-     * @REST\Get("/users/{id}.{_format}", requirements={"id"="\d+"}, defaults={"_format"="html"})
+     * @REST\Get("/users/{id}.{_format}", requirements={"id"="\d+"}, defaults={"_format"="~"})
      * @REST\View()
      */
     public function getAction(User $user)
@@ -55,7 +55,7 @@ class UserController extends FOSRestController
     }
 
     /**
-     * @REST\Post("/users.{_format}", defaults={"_format"="json"})
+     * @REST\Post("/users.{_format}", defaults={"_format"="~"})
      * @REST\View()
      */
     public function postAction(Request $request)
@@ -64,7 +64,7 @@ class UserController extends FOSRestController
     }
 
     /**
-     * @REST\Put("/users/{id}.{_format}", defaults={"_format"="json"})
+     * @REST\Put("/users/{id}.{_format}", defaults={"_format"="~"})
      * @REST\View()
      */
     public function putAction(Request $request, User $user)
