@@ -136,3 +136,8 @@ in the `AppKernel` class.
     </user>
 </users>
 ```
+
+## Tests
+
+**->** Write scenarios (tests) to cover the features of the `allAction()`
+method.
