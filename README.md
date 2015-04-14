@@ -137,7 +137,16 @@ in the `AppKernel` class.
 </users>
 ```
 
+
 ## Tests
 
 **->** Write scenarios (tests) to cover the features of the `allAction()`
-method.
+method. Behat runs the application with the `test` environment. Be sure to
+create a database and load fixtures in this environment.
+
+
+## Creating New Users
+
+**->** Write a new route that is bound to a `postAction()` method.
+
+**->** Write a scenario to cover this new feature!
