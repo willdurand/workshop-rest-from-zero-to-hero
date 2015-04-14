@@ -1,0 +1,13 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+
+            <a href="{{ path('acme_api_user_all') }}">Back to index</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

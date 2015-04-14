@@ -7,8 +7,6 @@ use FOS\RestBundle\View\View;
 use Acme\HelloBundle\Model\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use FOS\RestBundle\View\View;
-use Acme\HelloBundle\Model\User;
 
 class DefaultController extends Controller
 {
