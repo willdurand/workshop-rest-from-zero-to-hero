@@ -10,7 +10,6 @@ use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Acme\ApiBundle\Entity\UserCollection;
 use Symfony\Component\HttpFoundation\Request;
-use Acme\ApiBundle\Entity\User;
 use Acme\ApiBundle\Form\Type\UserType;
 
 class UserController extends FOSRestController
@@ -47,6 +46,7 @@ class UserController extends FOSRestController
 
     /**
      * @REST\Get("/users/{id}.{_format}", requirements={"id"="\d+"}, defaults={"_format"="html"})
+     * @REST\Get("/users/{id}.{_format}", defaults={"_format"="html"})
      * @REST\View()
      */
     public function getAction(User $user)
