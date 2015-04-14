@@ -47,7 +47,6 @@ class UserController extends FOSRestController
 
     /**
      * @REST\Get("/users/{id}.{_format}", requirements={"id"="\d+"}, defaults={"_format"="html"})
-     * @REST\Get("/users/{id}.{_format}", defaults={"_format"="html"})
      * @REST\View()
      */
     public function getAction(User $user)
@@ -79,7 +78,6 @@ class UserController extends FOSRestController
         $form   = $this->createForm(new UserType(), $user, [
             'method' => $update ? 'PUT' : 'POST',
         ]);
-
 
         $form->handleRequest($request);
 
