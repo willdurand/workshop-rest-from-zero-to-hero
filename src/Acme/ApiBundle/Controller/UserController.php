@@ -11,6 +11,7 @@ use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Acme\ApiBundle\Entity\UserCollection;
 use Symfony\Component\HttpFoundation\Request;
 use Acme\ApiBundle\Entity\User;
+use Acme\ApiBundle\Form\Type\UserType;
 
 class UserController extends FOSRestController
 {
@@ -45,11 +46,48 @@ class UserController extends FOSRestController
     }
 
     /**
-     * @REST\Get("/users/{id}.{_format}", defaults={"_format"="html"})
+     * @REST\Get("/users/{id}.{_format}", requirements={"id"="\d+"}, defaults={"_format"="html"})
      * @REST\View()
      */
     public function getAction(User $user)
     {
         return $user;
+    }
+
+    /**
+     * @REST\Post("/users.{_format}", defaults={"_format"="json"})
+     * @REST\View()
+     */
+    public function postAction(Request $request)
+    {
+        return $this->processForm($request, new User());
+    }
+
+    private function processForm(Request $request, User $user)
+    {
+        $form = $this->createForm(new UserType(), $user);
+
+        if ($request->isMethod('POST')) {
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
+                $this->getEm()->persist($user);
+                $this->getEm()->flush();
+
+                return $this->routeRedirectView(
+                    'acme_api_user_get',
+                    [ 'id' => $user->getId() ]
+                );
+            }
+
+            return $this->view($form, 400);
+        }
+
+        return $form;
+    }
+
+    private function getEm()
+    {
+        return $this->get('doctrine.orm.default_entity_manager');
     }
 }

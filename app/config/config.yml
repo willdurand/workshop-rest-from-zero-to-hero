@@ -42,6 +42,11 @@ fos_rest:
     view:
         view_response_listener: force
     param_fetcher_listener: true
+    body_listener: true
+    exception:
+        enabled: true
+    service:
+        exception_handler: fos_rest.view.exception_wrapper_handler
 
 sensio_framework_extra:
     view:   { annotations: false }
