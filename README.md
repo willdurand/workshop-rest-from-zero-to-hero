@@ -21,7 +21,7 @@ Configure the project by renaming the `.env.dist` file to `.env`:
 
 Run the application:
 
-    $ bin/console server:start --router=`pwd`/web/index.php
+    $ bin/console server:start --router=`pwd`/router.php
 
 **Note 1:** defining the `--router` option is required here because default
 Symfony routers hardcode the front controller name (in this project it is
