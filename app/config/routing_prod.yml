@@ -4,9 +4,9 @@ hello_world:
         _controller: "AcmeHelloBundle:Default:hello"
         _format: "html"
 
-#NelmioApiDocBundle:
-#    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
-#    prefix:   /api-doc
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api-doc
 
 acme_api:
     resource: "@AcmeApiBundle/Controller"

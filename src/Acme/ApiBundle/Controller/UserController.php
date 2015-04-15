@@ -12,14 +12,21 @@ use Acme\ApiBundle\Entity\UserCollection;
 use Symfony\Component\HttpFoundation\Request;
 use Acme\ApiBundle\Form\Type\UserType;
 use Acme\ApiBundle\Entity\User;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 class UserController extends FOSRestController
 {
     /**
-     * @REST\Get("/users.{_format}", defaults={"_format"="~"})
+     * @ApiDoc(
+         section="users",
+         statusCodes={
+             200="Returned when successful"
+         })
+     *
+     * @REST\Get("/users")
      * @REST\View()
-     * @REST\QueryParam(name="page", requirements="\d+", nullable=true)
-     * @REST\QueryParam(name="limit", requirements="\d+", default="10")
+     * @REST\QueryParam(name="page", requirements="\d+", nullable=true, description="Current page")
+     * @REST\QueryParam(name="limit", requirements="\d+", default="10", description="Maximum number of users to return")
      */
     public function allAction(Request $request, ParamFetcherInterface $paramFetcher)
     {
@@ -38,15 +45,13 @@ class UserController extends FOSRestController
         $pager->setMaxPerPage($limit);
         $pager->setCurrentPage($page);
 
-        if ('html' === $request->getRequestFormat()) {
-            return [ 'pager' => $pager ];
-        }
-
         return new UserCollection($pager->getCurrentPageResults());
     }
 
     /**
-     * @REST\Get("/users/{id}.{_format}", requirements={"id"="\d+"}, defaults={"_format"="~"})
+     * @ApiDoc(section="users")
+     *
+     * @REST\Get("/users/{id}", requirements={"id"="\d+"})
      * @REST\View()
      */
     public function getAction(User $user)
@@ -55,7 +60,12 @@ class UserController extends FOSRestController
     }
 
     /**
-     * @REST\Post("/users.{_format}", defaults={"_format"="~"})
+     * @ApiDoc(
+         section="users",
+         input="Acme\ApiBundle\Form\Type\UserType"
+     * )
+     *
+     * @REST\Post("/users")
      * @REST\View()
      */
     public function postAction(Request $request)
@@ -64,7 +74,12 @@ class UserController extends FOSRestController
     }
 
     /**
-     * @REST\Put("/users/{id}.{_format}", defaults={"_format"="~"})
+     * @ApiDoc(
+         section="users",
+         input="Acme\ApiBundle\Form\Type\UserType"
+     * )
+     *
+     * @REST\Put("/users/{id}")
      * @REST\View()
      */
     public function putAction(Request $request, User $user)
