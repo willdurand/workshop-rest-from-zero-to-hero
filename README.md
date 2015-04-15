@@ -209,3 +209,13 @@ that does content negotitation (black) magic for you, leveraging the
 
 **->** Enable the format listener, and play with `curl` or
 [HTTPie](https://github.com/jkbr/httpie).
+
+
+## Documentation
+
+Introducing the
+[NelmioApiDocBundle](https://github.com/nelmio/NelmioApiDocBundle), a bundle
+that generates great documentation for you!
+
+**->** Write documentation for the different actions. Group them into a _users_
+section.
