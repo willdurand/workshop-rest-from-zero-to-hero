@@ -3,7 +3,7 @@ default:
         default:
             contexts:
                 - FeatureContext:
-                    - http://localhost:8000
+                    - http://127.0.0.1:8000
 
     extensions:
         Behat\Symfony2Extension: ~
