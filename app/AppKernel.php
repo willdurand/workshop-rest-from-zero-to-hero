@@ -27,8 +27,11 @@ class AppKernel extends Kernel
             // 3. Pagination
             // new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
 
-            // 4. NelmioApiDocBundle
+            // 4. NelmioApiDocBundle (Documentation)
             // new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+
+            // 5. BazingaHateoasBundle (Hypermedia)
+            // new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
 
             new Acme\HelloBundle\AcmeHelloBundle()
         );

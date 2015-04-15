@@ -12,7 +12,8 @@
         "doctrine/orm": "~2.5",
         "roave/security-advisories": "dev-master",
         "sensio/framework-extra-bundle": "~3.0",
-        "white-october/pagerfanta-bundle": "~1.0"
+        "white-october/pagerfanta-bundle": "~1.0",
+        "willdurand/hateoas-bundle": "0.4.*"
     },
     "autoload": {
         "psr-0": { "Acme": "src/" }
