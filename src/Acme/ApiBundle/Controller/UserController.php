@@ -13,6 +13,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Acme\ApiBundle\Form\Type\UserType;
 use Acme\ApiBundle\Entity\User;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Hateoas\Configuration\Route as HateoasRoute;
+use Hateoas\Representation\Factory\PagerfantaFactory;
+use Hateoas\Representation\CollectionRepresentation;
 
 class UserController extends FOSRestController
 {
@@ -45,7 +48,18 @@ class UserController extends FOSRestController
         $pager->setMaxPerPage($limit);
         $pager->setCurrentPage($page);
 
-        return new UserCollection($pager->getCurrentPageResults());
+        $pagerfantaFactory   = new PagerfantaFactory();
+        $paginatedCollection = $pagerfantaFactory->createRepresentation(
+            $pager,
+            new HateoasRoute('acme_api_user_all'),
+            new CollectionRepresentation(
+                $pager->getCurrentPageResults(),
+                'users',
+                'users'
+            )
+        );
+
+        return $paginatedCollection;
     }
 
     /**

@@ -89,3 +89,35 @@ Feature: Users API
         }
         """
         Then the status code should be 204
+
+    Scenario: Paginated collection with hypermedia links
+        Given I am on "/api/users"
+        When I ask for "application/json" content
+        Then I should get a "users" embedded resource
+        And a "first" link should exist
+        And a "last" link should exist
+        And a "self" link should exist
+        And a "next" link should exist
+        And a "previous" link should not exist
+        And the "page" attribute should be equal to "1"
+
+    Scenario: Paginated collection with hypermedia links
+        Given I am on "/api/users"
+        And I ask for "application/json" content
+        When I follow the "next" link
+        Then I should get a "users" embedded resource
+        And a "previous" link should exist
+        And the "page" attribute should be equal to "2"
+
+    Scenario: Paginated collection with hypermedia links
+        Given I am on "/api/users"
+        And I ask for "application/json" content
+        When I follow the "last" link
+        Then I should get a "users" embedded resource
+        And a "next" link should not exist
+
+    Scenario: Follow links to retrieve a user
+        Given I am on "/api/users"
+        And I ask for "application/json" content
+        When I follow the "self" link of the user "1"
+        Then I should get a user
