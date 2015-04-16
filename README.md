@@ -32,6 +32,8 @@ folder, not in `app/`.
 
 Browse [http://localhost:8000/](http://localhost:8000/).
 
+![](doc/screenshots/master.png)
+
 
 ## 1 - Serialization
 
