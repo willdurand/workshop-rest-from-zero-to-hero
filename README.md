@@ -297,6 +297,28 @@ The [Hateoas](https://github.com/willdurand/Hateoas) PHP library leverages the
 (JMS) Serializer library to provide a nice way to build HATEOAS REST web
 services.
 
+**Task:**  Transform the `allAction()` response in a
+[HAL](http://stateless.co/hal_specification.html) compliant response:
+
+```json
+{
+    "_embedded": {
+        "users": [
+        ]
+    },
+    "_links": {
+    },
+    "limit": 10,
+    "page": 1,
+    "pages": 7,
+    "total": 66
+}
+```
+
+> **Tip:** Hateoas has built-in support for **Pagerfanta**.
+
+**Task:** Write scenarios to cover this new feature.
+
 
 ## 10 - Security
 
