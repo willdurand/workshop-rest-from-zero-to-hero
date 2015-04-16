@@ -283,3 +283,23 @@ that generates great documentation for you!
 section.
 
 ![](doc/screenshots/apidocbundle.png)
+
+
+## 9 - Hateoas
+
+HATEOAS stands for Hypermedia as the Engine of Application State, and adds
+hypermedia links to your representations (i.e. your API responses). [HATEOAS is
+about the discoverability of actions on a
+resource](http://timelessrepo.com/haters-gonna-hateoas). This is a
+**requirement** for building a REST API.
+
+The [Hateoas](https://github.com/willdurand/Hateoas) PHP library leverages the
+(JMS) Serializer library to provide a nice way to build HATEOAS REST web
+services.
+
+
+## 10 - Security
+
+The Symfony documentation contains a cookbook entry on [How to Authenticate
+Users with API
+Keys](http://symfony.com/doc/current/cookbook/security/api_key_authentication.html).
