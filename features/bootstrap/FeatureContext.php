@@ -19,6 +19,8 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
 
     private $response;
 
+    private $previousAcceptHeader;
+
     /**
      * Initializes context.
      *
@@ -95,7 +97,123 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $this->request($string, [ 'Content-Type' => 'application/xml' ]);
     }
 
-    private function request($string, array $headers)
+    /**
+     * @When I send the following JSON document to :arg1:
+     */
+    public function iSendTheFollowingJsonDocumentTo($arg1, PyStringNode $string)
+    {
+        $this->request('PUT', $arg1, $string, [ 'Content-Type' => 'application/json' ]);
+    }
+
+    /**
+     * @When I ask for :accept content
+     */
+    public function iAskForContent($accept)
+    {
+        $this->request('GET', $this->getSession()->getCurrentUrl(), null, [ 'Accept' => $accept ]);
+        $this->previousAcceptHeader = $accept;
+    }
+
+    /**
+     * @Then I should get a :embeddedRel embedded resource
+     */
+    public function iShouldGetAEmbeddedResource($embeddedRel)
+    {
+        $this->ensureAcceptJson();
+
+        $json = json_decode($this->response->getBody(), true);
+
+        assertArrayHasKey('_embedded', $json);
+        assertArrayHasKey($embeddedRel, $json['_embedded']);
+    }
+
+    /**
+     * @Then a :linkName link should exist
+     */
+    public function aLinkShouldExist($linkName)
+    {
+        $this->ensureAcceptJson();
+
+        $json = json_decode($this->response->getBody(), true);
+
+        assertArrayHasKey('_links', $json);
+        assertArrayHasKey($linkName, $json['_links']);
+    }
+
+    /**
+     * @Then a :linkName link should not exist
+     */
+    public function aLinkShouldNotExist($linkName)
+    {
+        $this->ensureAcceptJson();
+
+        $json = json_decode($this->response->getBody(), true);
+
+        assertArrayHasKey('_links', $json);
+        assertArrayNotHasKey($linkName, $json['_links']);
+    }
+
+    /**
+     * @When I follow the :linkName link
+     */
+    public function iFollowTheLink($linkName)
+    {
+        $this->ensureAcceptJson();
+
+        $json = json_decode($this->response->getBody(), true);
+
+        $this->aLinkShouldExist($linkName);
+
+        $this->request('GET', $json['_links'][$linkName]['href'], null, [ 'Accept' => $this->previousAcceptHeader ]);
+    }
+
+    /**
+     * @Then the :name attribute should be equal to :expectedValue
+     */
+    public function theAttributeShouldBeEqualTo($name, $expectedValue)
+    {
+        $this->ensureAcceptJson();
+
+        $json = json_decode($this->response->getBody(), true);
+
+        assertArrayHasKey($name, $json);
+        assertEquals($expectedValue, $json[$name]);
+    }
+
+    /**
+     * @When I follow the :arg1 link of the user :userIndex
+     */
+    public function iFollowTheLinkOfTheUser($linkName, $userIndex)
+    {
+        $this->ensureAcceptJson();
+
+        $json = json_decode($this->response->getBody(), true);
+
+        $this->iShouldGetAEmbeddedResource('users');
+        $users = $json['_embedded']['users'];
+
+        assertTrue(isset($users[$userIndex]));
+        $user = $users[$userIndex];
+
+        $this->request('GET', $user['_links'][$linkName]['href'], null, [ 'Accept' => $this->previousAcceptHeader ]);
+    }
+
+    /**
+     * @Then I should get a user
+     */
+    public function iShouldGetAUser()
+    {
+        $this->ensureAcceptJson();
+
+        $json = json_decode($this->response->getBody(), true);
+
+        assertArrayHasKey('id', $json);
+        assertArrayHasKey('last_name', $json);
+        assertArrayHasKey('first_name', $json);
+        assertArrayHasKey('birth_date', $json);
+    }
+
+    private function request($method, $uri, $string, array $headers)
     {
         try {
             $this->response = $this->client->post(
@@ -107,6 +225,17 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             );
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             $this->response = $e->getResponse();
+        }
+    }
+
+    private function ensureAcceptJson()
+    {
+        if (null === $this->previousAcceptHeader) {
+            throw new \Exception('You must ask for a specific content type (Accept header) first');
+        }
+
+        if ('application/json' !== $this->previousAcceptHeader) {
+            throw new PendingException();
         }
     }
 }
