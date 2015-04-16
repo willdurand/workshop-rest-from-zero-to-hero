@@ -41,7 +41,7 @@ Serialization is brought to you by the
 [JMSSerializerBundle](http://jmsyst.com/bundles/JMSSerializerBundle) bundle, for free
 ;-) Serialization is the process of transforming a graph of objects into a structured data format (XML, YAML, JSON but also binary).
 
-**->** Start by modifying the `DefaultController` class to use the
+**Task:** Start by modifying the `DefaultController` class to use the
 `jms_serializer` service and return either some XML, HTML, or JSON.
 
 > **Tip:** If there is one thing to retain, it is that serialization takes the exact same data set as input, but outputs it in different formats.
@@ -59,14 +59,14 @@ integrates with the JMSSerializerBundle, and provides the same feature throught
 the concept of
 "[views](http://symfony.com/doc/master/bundles/FOSRestBundle/2-the-view-layer.html)".
 
-**->** Configure the FOSRestBundle to leverage [the View
+**Task:** Configure the FOSRestBundle to leverage [the View
 layer](http://symfony.com/doc/master/bundles/FOSRestBundle/2-the-view-layer.html).
 
 > **Tip:** FOSRestBundle leverages the JMSSerializerBundle for the "serialization" part. If you only use this feature, no need to use the FOSRestBundle. However, this bundle provides many interesting features that we are going to cover in the following.
 
 ### 1.3 - Leveraging JMSSerializerBundle
 
-**->** Configure the XML output to get the following document:
+**Task:** Configure the XML output to get the following document:
 
 ```xml
 <hello>
@@ -80,18 +80,18 @@ layer](http://symfony.com/doc/master/bundles/FOSRestBundle/2-the-view-layer.html
 
 ### 2.1 - Bootstrap
 
-**->** Create a bundle called `ApiBundle`.
+**Task:** Create a bundle called `ApiBundle`.
 
-**->** Create a `User` class with a few attributes (`id`, `firstName`, `lastName`,
+**Task:** Create a `User` class with a few attributes (`id`, `firstName`, `lastName`,
 `birthDate`, etc.) and configure Doctrine mapping on it.
 
 ### 2.2 - Fixtures with Alice
 
-**->** Uncomment the `DoctrineFixturesBundle` and `HautelookAliceBundle` into the
+**Task:** Uncomment the `DoctrineFixturesBundle` and `HautelookAliceBundle` into the
 `app/AppKernel.php` file. You can now quickly write _fixtures_ using
 [Alice](https://github.com/nelmio/alice/blob/master/README.md).
 
-**->** Create a `Acme\ApiBundle\DataFixtures\ORM\Loader`. This class should extend `Hautelook\AliceBundle\Alice\DataFixtureLoader` and implement a `getFixtures()` method:
+**Task:** Create a `Acme\ApiBundle\DataFixtures\ORM\Loader`. This class should extend `Hautelook\AliceBundle\Alice\DataFixtureLoader` and implement a `getFixtures()` method:
 
 ```php
 protected function getFixtures()
@@ -102,7 +102,7 @@ protected function getFixtures()
 }
 ```
 
-**->** Write Alice configuration in a `users.yml` file, and run the command above to load fixtures:
+**Task:** Write Alice configuration in a `users.yml` file, and run the command above to load fixtures:
 
     $ bin/console doctrine:fixtures:load
 
@@ -110,9 +110,9 @@ protected function getFixtures()
 
 ### 2.3 - Playing with FOSRestBundle Views
 
-**->** Add an empty controller `UserController` into your `ApiBundle`.
+**Task:** Add an empty controller `UserController` into your `ApiBundle`.
 
-**->** Write a method named `allAction()` that returns all users throught a FOS
+**Task:** Write a method named `allAction()` that returns all users throught a FOS
 view, using annotations (`@Get` and `@View`).
 
 
@@ -123,13 +123,13 @@ powerful PHP pager. Let's use it!
 
 ### 3.1 - WhiteOctoberPagerfantaBundle
 
-**->** In order to use it, uncomment the line to enable the
+**Task:** In order to use it, uncomment the line to enable the
 [WhiteOctoberPagerfantaBundle](https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle)
 in the `AppKernel` class.
 
 ### 3.2 - Introducing [Query|Request] Params
 
-**->** By combining FOSRestBundle `@QueryParam` and the Pagerfanta, modify the
+**Task:** By combining FOSRestBundle `@QueryParam` and the Pagerfanta, modify the
 `allAction()` to provide a paginated collection.
 
 The JSON response should look like this:
@@ -162,12 +162,12 @@ The XML response should look like this:
 
 ### 3.3 - Retrieving a user
 
-**->** Create a `getAction()` that returns a given user.
+**Task:** Create a `getAction()` that returns a given user.
 
 
 ## 4 - Testing
 
-**->** Write scenarios (tests) to cover the features of the `allAction()`
+**Task:** Write scenarios (tests) to cover the features of the `allAction()`
 method.
 
 Keep in mind that Behat runs the application with the `test` environment, so be sure to
@@ -178,7 +178,7 @@ create a database and load fixtures in this environment.
 
 ### 5.1 - Form
 
-**->** Use the [Form](http://symfony.com/doc/current/book/forms.html) component
+**Task:** Use the [Form](http://symfony.com/doc/current/book/forms.html) component
 to add a new user. This action must be named `postAction()`.
 
 You will have to configure the
@@ -244,12 +244,12 @@ can find two _scenarios_ below:
 
 ## 6 - The ""Update" Part
 
-**->** Refactor your code to allow modifying existing entities.
+**Task:** Refactor your code to allow modifying existing entities.
 
 > **Tip:** Try to decouple your code as much as you can, so that you can be more
 efficient later.
 
-**->** Write a scenario to cover this new feature.
+**Task:** Write a scenario to cover this new feature.
 
 
 ## 7 - Content Negotiation
@@ -259,7 +259,7 @@ Listener](http://symfony.com/doc/master/bundles/FOSRestBundle/3-listener-support
 that does content negotitation (black) magic for you, leveraging the
 [Negotiation](https://github.com/willdurand/Negotiation) library.
 
-**->** Enable the format listener, and play with `curl` or
+**Task:** Enable the format listener, and play with `curl` or
 [HTTPie](https://github.com/jkbr/httpie).
 
 
@@ -269,5 +269,5 @@ Introducing the
 [NelmioApiDocBundle](https://github.com/nelmio/NelmioApiDocBundle), a bundle
 that generates great documentation for you!
 
-**->** Write documentation for the different actions. Group them into a _users_
+**Task:** Write documentation for the different actions. Group them into a _users_
 section.
