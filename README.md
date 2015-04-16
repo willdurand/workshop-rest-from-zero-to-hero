@@ -48,6 +48,10 @@ Serialization is brought to you by the
 
 > **Tip:** If there is one thing to retain, it is that serialization takes the exact same data set as input, but outputs it in different formats.
 
+![](doc/screenshots/1-serialization-json.png)
+
+![](doc/screenshots/1-serialization-xml.png)
+
 ### 1.2 - JMSSerializerBundle + FOSRestBundle = &hearts;
 
 A small [Behat](http://docs.behat.org) test suite is provided:
@@ -77,6 +81,8 @@ layer](http://symfony.com/doc/master/bundles/FOSRestBundle/2-the-view-layer.html
 ```
 
 > **Tip:** Your response does not have to be the mirror of your database schema. When building an API, you should think about the response first, and then about how to store data.
+
+![](doc/screenshots/3-serialization-xml.png)
 
 ## 2 - The `ApiBundle` (a.k.a. the Read part)
 
@@ -117,23 +123,6 @@ protected function getFixtures()
 **Task:** Write a method named `allAction()` that returns all users throught a FOS
 view, using annotations (`@Get` and `@View`).
 
-
-## 3 - Pagination
-
-[Pagerfanta](https://github.com/whiteoctober/Pagerfanta) is a well-known and
-powerful PHP pager. Let's use it!
-
-### 3.1 - WhiteOctoberPagerfantaBundle
-
-**Task:** In order to use it, uncomment the line to enable the
-[WhiteOctoberPagerfantaBundle](https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle)
-in the `AppKernel` class.
-
-### 3.2 - Introducing [Query|Request] Params
-
-**Task:** By combining FOSRestBundle `@QueryParam` and the Pagerfanta, modify the
-`allAction()` to provide a paginated collection.
-
 The JSON response should look like this:
 
 ```json
@@ -161,6 +150,25 @@ The XML response should look like this:
     </user>
 </users>
 ```
+
+
+## 3 - Pagination
+
+[Pagerfanta](https://github.com/whiteoctober/Pagerfanta) is a well-known and
+powerful PHP pager. Let's use it!
+
+### 3.1 - WhiteOctoberPagerfantaBundle
+
+**Task:** In order to use it, uncomment the line to enable the
+[WhiteOctoberPagerfantaBundle](https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle)
+in the `AppKernel` class.
+
+### 3.2 - Introducing [Query|Request] Params
+
+**Task:** By combining FOSRestBundle `@QueryParam` and the Pagerfanta, modify the
+`allAction()` to provide a paginated collection.
+
+![](doc/screenshots/paginated-users-html.png)
 
 ### 3.3 - Retrieving a user
 
@@ -273,3 +281,5 @@ that generates great documentation for you!
 
 **Task:** Write documentation for the different actions. Group them into a _users_
 section.
+
+![](doc/screenshots/apidocbundle.png)
