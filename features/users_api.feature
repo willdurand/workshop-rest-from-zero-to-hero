@@ -40,7 +40,25 @@ Feature: Users API
         Then the status code should be 400
         And it should contain the following JSON content:
         """
-        {"code":400,"message":"Validation Failed","errors":{"children":{"firstName":{"errors":["This value should not be blank."]},"lastName":{"errors":["This value should not be blank."]},"birthDate":[]}}}
+        {
+            "code": 400,
+            "errors": {
+                "children": {
+                    "birthDate": [],
+                    "firstName": {
+                        "errors": [
+                            "This value should not be blank."
+                        ]
+                    },
+                    "lastName": {
+                        "errors": [
+                            "This value should not be blank."
+                        ]
+                    }
+                }
+            },
+            "message": "Validation Failed"
+        }
         """
 
     Scenario: Add a new user with XML
