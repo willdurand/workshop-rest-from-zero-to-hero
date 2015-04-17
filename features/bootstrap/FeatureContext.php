@@ -215,13 +215,15 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     private function request($method, $uri, $string, array $headers)
     {
         try {
-            $this->response = $this->client->post(
+            $request = $this->client->createRequest(
+                $method,
                 '/api/users',
                 [
                     'headers' => $headers,
                     'body'    => $string,
                 ]
             );
+            $this->response = $this->client->send($request);
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             $this->response = $e->getResponse();
         }
