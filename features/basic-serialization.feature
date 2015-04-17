@@ -19,4 +19,4 @@ Feature: Basic Serialization
         Given I am on "/hello/william.xml"
         When I reload the page
         Then it should be a "xml" content
-        And it should contain a "name" element whose value is "william"
+        And it should contain a user whose name is "william"
