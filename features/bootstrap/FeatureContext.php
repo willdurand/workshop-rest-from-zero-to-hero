@@ -55,14 +55,13 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     }
 
     /**
-     * @Then it should contain a :element element whose value is :value
+     * @Then it should contain a user whose :property is :value
      */
-    public function itShouldContainAElementWhoseValueIs($element, $value)
+    public function itShouldContainAUserWhoseIs($property, $value)
     {
         $xml = simplexml_load_string($this->getSession()->getPage()->getContent());
 
-        assertTrue(isset($xml->{$element}));
-        assertEquals($value, $xml->{$element});
+        assertEquals($value, $xml->$property);
     }
 
     /**
@@ -78,7 +77,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function itShouldContainTheFollowingJsonContent(PyStringNode $string)
     {
-        assertEquals($string, (string) $this->response->getBody());
+        assertJsonStringEqualsJsonString($string->getRaw(), (string) $this->response->getBody());
     }
 
     /**
@@ -86,7 +85,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iSendTheFollowingJsonDocument(PyStringNode $string)
     {
-        $this->request($string, [ 'Content-Type' => 'application/json' ]);
+        $this->request('POST', '/api/users', $string, [ 'Content-Type' => 'application/json' ]);
     }
 
     /**
@@ -94,7 +93,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iSendTheFollowingXmlDocument(PyStringNode $string)
     {
-        $this->request($string, [ 'Content-Type' => 'application/xml' ]);
+        $this->request('POST', '/api/users', $string, [ 'Content-Type' => 'application/xml' ]);
     }
 
     /**
