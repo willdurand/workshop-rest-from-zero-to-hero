@@ -217,7 +217,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         try {
             $request = $this->client->createRequest(
                 $method,
-                '/api/users',
+                $uri,
                 [
                     'headers' => $headers,
                     'body'    => $string,
