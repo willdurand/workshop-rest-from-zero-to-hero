@@ -1,0 +1,5 @@
+\Acme\ApiBundle\Entity\User:
+    user{1..20}:
+        firstName: <firstName()>
+        lastName:  <lastName()>
+        birthDate: <date()>

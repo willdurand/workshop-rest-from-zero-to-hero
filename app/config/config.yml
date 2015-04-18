@@ -41,9 +41,11 @@ doctrine:
 fos_rest:
     view:
         view_response_listener: force
+    param_fetcher_listener: true
 
 sensio_framework_extra:
-    view: { annotations: false }
+    view:   { annotations: false }
+    router: { annotations: true }
 
 jms_serializer:
     metadata:
