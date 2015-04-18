@@ -9,10 +9,10 @@ Feature: Users API
         Then it should be a "html" content
         And I should see a ".users" element
 
-    Scenario: Get all users
-        Given I am on "/api/users.json"
-        When I reload the page
-        Then it should be a "json" content
+#    Scenario: Get all users
+#        Given I am on "/api/users.json"
+#        When I reload the page
+#        Then it should be a "json" content
 
     Scenario: Add a new user
         Given I am on "/api/users"
