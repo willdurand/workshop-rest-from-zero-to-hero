@@ -13,9 +13,9 @@
                     </tr>
                 <thead>
                 <tbody>
-                {% for user in data.users %}
+                {% for user in pager %}
                     <tr class="user">
-                        <td>{{ user.id }}</td>
+                        <td><a href="{{ path('acme_api_user_get', { 'id': user.id }) }}">{{ user.id }}</a></td>
                         <td>{{ user.firstName }}</td>
                         <td>{{ user.lastName }}</td>
                     </tr>

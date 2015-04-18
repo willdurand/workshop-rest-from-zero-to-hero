@@ -10,11 +10,12 @@ use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Acme\ApiBundle\Entity\UserCollection;
 use Symfony\Component\HttpFoundation\Request;
+use Acme\ApiBundle\Entity\User;
 
 class UserController extends FOSRestController
 {
     /**
-     * @REST\Get("/users.{_format}", defaults={"_format"="html"}),
+     * @REST\Get("/users.{_format}", defaults={"_format"="html"})
      * @REST\View()
      * @REST\QueryParam(name="page", requirements="\d+", nullable=true)
      * @REST\QueryParam(name="limit", requirements="\d+", default="10")
@@ -41,5 +42,14 @@ class UserController extends FOSRestController
         }
 
         return new UserCollection($pager->getCurrentPageResults());
+    }
+
+    /**
+     * @REST\Get("/users/{id}.{_format}", defaults={"_format"="html"})
+     * @REST\View()
+     */
+    public function getAction(User $user)
+    {
+        return $user;
     }
 }
