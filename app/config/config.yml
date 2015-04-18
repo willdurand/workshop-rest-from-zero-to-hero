@@ -44,3 +44,10 @@ fos_rest:
 
 sensio_framework_extra:
     view: { annotations: false }
+
+jms_serializer:
+    metadata:
+        cache: file
+        debug: "%kernel.debug%"
+        file_cache:
+            dir: "%kernel.cache_dir%/serializer"
