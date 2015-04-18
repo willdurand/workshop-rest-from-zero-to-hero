@@ -51,7 +51,7 @@ fos_rest:
         rules:
             -
                 path: '^/api'
-                priorities: [ 'html', 'json', 'xml' ]
+                priorities: [ 'json', 'xml' ]
                 fallback_format: json
                 exception_fallback_format: json
                 prefer_extension: false
@@ -66,3 +66,13 @@ jms_serializer:
         debug: "%kernel.debug%"
         file_cache:
             dir: "%kernel.cache_dir%/serializer"
+
+nelmio_api_doc:
+    name: Workshop API Documentation
+    sandbox:
+        endpoint: http://localhost:8000
+        request_format:
+            method: accept_header
+    motd:
+        template: '::motd.html.twig'
+    default_sections_opened: true
