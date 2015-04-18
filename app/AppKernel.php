@@ -31,7 +31,7 @@ class AppKernel extends Kernel
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
 
             // 5. BazingaHateoasBundle (Hypermedia)
-            // new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
+            new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
 
             new Acme\HelloBundle\AcmeHelloBundle(),
             new Acme\ApiBundle\AcmeApiBundle(),

@@ -5,11 +5,13 @@ namespace Acme\ApiBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Validator\Constraints as Assert;
+use Hateoas\Configuration\Annotation as Hateoas;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="user")
  * @JMS\XmlRoot("user")
+ * @Hateoas\Relation("self", href = "expr('/api/users/' ~ object.getId())")
  */
 class User
 {
