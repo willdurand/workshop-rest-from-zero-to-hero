@@ -74,3 +74,18 @@ Feature: Users API
         </xml>
         """
         Then the status code should be 201
+
+
+    Scenario: Update an existing user
+        Given I am on "/api/users/1"
+        When I send the following JSON document to "/api/users/1":
+        """
+        {
+            "user": {
+                "firstName": "Babar",
+                "lastName": "The Elephant",
+                "birthDate": "1988-01-01"
+            }
+        }
+        """
+        Then the status code should be 204

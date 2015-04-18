@@ -55,13 +55,14 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     }
 
     /**
-     * @Then it should contain a user whose :property is :value
+     * @Then it should contain a :element element whose value is :value
      */
-    public function itShouldContainAUserWhoseIs($property, $value)
+    public function itShouldContainAElementWhoseValueIs($element, $value)
     {
         $xml = simplexml_load_string($this->getSession()->getPage()->getContent());
 
-        assertEquals($value, $xml->$property);
+        assertTrue(isset($xml->{$element}));
+        assertEquals($value, $xml->{$element});
     }
 
     /**

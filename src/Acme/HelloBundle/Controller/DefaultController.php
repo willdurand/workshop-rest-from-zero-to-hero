@@ -3,8 +3,8 @@
 namespace Acme\HelloBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use FOS\RestBundle\View\View;
 use Acme\HelloBundle\Model\User;
+Use FOS\RestBundle\View\View;
 
 class DefaultController extends Controller
 {

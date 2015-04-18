@@ -10,8 +10,8 @@ use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Acme\ApiBundle\Entity\UserCollection;
 use Symfony\Component\HttpFoundation\Request;
-use Acme\ApiBundle\Entity\User;
 use Acme\ApiBundle\Form\Type\UserType;
+use Acme\ApiBundle\Entity\User;
 
 class UserController extends FOSRestController
 {
@@ -47,6 +47,7 @@ class UserController extends FOSRestController
 
     /**
      * @REST\Get("/users/{id}.{_format}", requirements={"id"="\d+"}, defaults={"_format"="html"})
+     * @REST\Get("/users/{id}.{_format}", defaults={"_format"="html"})
      * @REST\View()
      */
     public function getAction(User $user)
@@ -63,27 +64,37 @@ class UserController extends FOSRestController
         return $this->processForm($request, new User());
     }
 
+    /**
+     * @REST\Put("/users/{id}.{_format}", defaults={"_format"="json"})
+     * @REST\View()
+     */
+    public function putAction(Request $request, User $user)
+    {
+        return $this->processForm($request, $user);
+    }
+
     private function processForm(Request $request, User $user)
     {
-        $form = $this->createForm(new UserType(), $user);
+        $update = $request->isMethod('PUT');
+        $form   = $this->createForm(new UserType(), $user, [
+            'method' => $update ? 'PUT' : 'POST',
+        ]);
 
-        if ($request->isMethod('POST')) {
-            $form->handleRequest($request);
 
-            if ($form->isValid()) {
-                $this->getEm()->persist($user);
-                $this->getEm()->flush();
+        $form->handleRequest($request);
 
-                return $this->routeRedirectView(
-                    'acme_api_user_get',
-                    [ 'id' => $user->getId() ]
-                );
-            }
+        if ($form->isValid()) {
+            $this->getEm()->persist($user);
+            $this->getEm()->flush();
 
-            return $this->view($form, 400);
+            return $this->routeRedirectView(
+                'acme_api_user_get',
+                [ 'id' => $user->getId() ],
+                $update ? '204' : '201'
+            );
         }
 
-        return $form;
+        return $this->view($form, 400);
     }
 
     private function getEm()
