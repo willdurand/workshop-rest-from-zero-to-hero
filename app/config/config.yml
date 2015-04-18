@@ -37,3 +37,10 @@ doctrine:
         password: %database_password%
         charset:  %database_charset%
         path:     %database_path%
+
+fos_rest:
+    view:
+        view_response_listener: force
+
+sensio_framework_extra:
+    view: { annotations: false }
