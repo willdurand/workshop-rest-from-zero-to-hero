@@ -34,7 +34,7 @@ protected function getFixtures()
 
 **Task:** Add an empty controller `UserController` into your `ApiBundle`.
 
-**Task:** Write a method named `allAction()` that returns all users throught a FOS
+**Task:** Write a method named `allAction()` that returns all users through a FOS
 view, using annotations (`@Get` and `@View`).
 
 The JSON response should look like this:
