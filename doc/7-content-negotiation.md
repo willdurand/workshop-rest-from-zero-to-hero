@@ -2,7 +2,7 @@
 
 The FOSRestBundle provides a [Format
 Listener](http://symfony.com/doc/master/bundles/FOSRestBundle/3-listener-support.html#format-listener)
-that does content negotitation (black) magic for you, leveraging the
+that does content negotiation (black) magic for you, leveraging the
 [Negotiation](https://github.com/willdurand/Negotiation) library.
 
 **Task:** Enable the format listener, and play with `curl` or
