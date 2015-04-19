@@ -26,7 +26,7 @@ A small [Behat](http://docs.behat.org) test suite is provided:
 > **Tip:** Always cover your code by test. If you don't feel good enough with unit testing, functional testing might be an option as it is often easier to understand.
 
 The [FOSRestBundle](https://github.com/FriendsOfSymfony/FOSRestBundle)
-integrates with the JMSSerializerBundle, and provides the same feature throught
+integrates with the JMSSerializerBundle, and provides the same feature through
 the concept of
 "[views](http://symfony.com/doc/master/bundles/FOSRestBundle/2-the-view-layer.html)".
 
